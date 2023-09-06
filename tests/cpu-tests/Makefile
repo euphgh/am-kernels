@@ -30,6 +30,8 @@ run: all
 	@cat $(RESULT)
 	@rm $(RESULT)
 
+image: all
+
 gdb: all
 
 clean:
