@@ -1,5 +1,5 @@
 #include "trap.h"
-const char *it = NULL;
+
 char one[50];
 char two[50];
 
