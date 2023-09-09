@@ -23,7 +23,13 @@ Makefile.%: tests/%.c latest
 		printf "[%14s] $(COLOR_RED)FAIL!$(COLOR_NONE)\n" $* >> $(RESULT); \
 		exit 1;\
 	fi
+	@if [ "$*" = "sprintf" ]; then rm -f tests/sprintf.c; fi
 	-@rm -f Makefile.$*
+
+tests/sprintf.c: tests/GenFmtPrintTest.c
+	@mkdir -p build
+	@gcc $^ -o build/GenFmtPrintTest.out
+	@build/GenFmtPrintTest.out | clang-format > $@
 
 run: all
 	@cat $(RESULT)
